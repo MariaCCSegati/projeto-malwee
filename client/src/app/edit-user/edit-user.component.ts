@@ -18,7 +18,7 @@ export interface DialogDataUser {
   styleUrls: ['./edit-user.component.scss']
 })
 export class EditUserComponent implements OnInit {
-
+  hide= true;
   name:string = '';
   username :string = '';
   password = '';
