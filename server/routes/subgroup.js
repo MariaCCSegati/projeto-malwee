@@ -42,14 +42,10 @@ knl.get('subgroup', async(req, resp) => {
             if (!knl.objects.isEmptyArray(group)){
                 product.group_description = group[0].description
             }
-
-            console.log(product.group_description)
         }
     }
-    console.log(result);
     resp.json(result);
-    resp.end();
-});
+}, securityConsts.USER_TYPE_PUBLIC);
 
 knl.get('subgroup/:id', async(req, resp) => {
 
