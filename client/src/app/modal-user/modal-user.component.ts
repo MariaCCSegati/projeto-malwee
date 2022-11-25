@@ -16,7 +16,7 @@ export interface DialogDataUser {
   styleUrls: ['./modal-user.component.scss']
 })
 export class ModalUserComponent implements OnInit {
-
+  hide = true;
   name:string = '';
   username :string = '';
   password = '';
