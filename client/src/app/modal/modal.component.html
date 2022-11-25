@@ -1,0 +1,15 @@
+<mat-tab-group id="modal">
+    <mat-tab label="Inserir">
+        <mat-form-field class="example-full-width" appearance="fill" >
+            <mat-label>Insira um grupo</mat-label>
+           <input matInput placeholder="Ex. Calça" class="inputzin" [(ngModel)]="description">
+          </mat-form-field>
+    </mat-tab>
+
+  </mat-tab-group>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button class="botao" id="botao1" (click)="insert()"><mat-icon>add_circle_outline</mat-icon></button>
+    <button mat-raised-button class="botao" (click)="cancel()">Sair</button>
+  </div>
+  

@@ -1,0 +1,31 @@
+<mat-card>
+        
+    <mat-form-field class="example-full-width" appearance="fill" >
+    <mat-label>Busque uma coleção</mat-label>
+          <input matInput id="input1" placeholder="Ex. Verão 2022" [(ngModel)]="description">
+          <button mat-icon-button matSuffix class="botao" (click)="openDialog()"><mat-icon>add_circle_outline</mat-icon></button>
+          <button mat-icon-button matSuffix class="botao" (click)="list()"><mat-icon>refresh</mat-icon></button>
+    </mat-form-field>
+
+        
+</mat-card>
+
+<!--<div *ngFor="let person of group">
+    <p>{{person.description}}</p> 
+ </div> -->
+
+<table id="tabelinha">
+    <tr>
+        <th> ID </th>
+        <th> Coleção</th>
+        <th id="config"> Configurações </th>
+    </tr>
+
+    <tr *ngFor="let person of collection | filter:description" >
+        <td> {{person.id}} </td>
+        <td> {{person.description}} </td>
+        <td><button mat-icon-button (click)="openDialog2(collection, person.id, person.description)"><mat-icon>settings</mat-icon></button></td>
+    </tr> 
+
+    
+</table>

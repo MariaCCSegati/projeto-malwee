@@ -1,0 +1,35 @@
+<mat-card>
+        
+    <mat-form-field class="example-full-width" appearance="fill" >
+    <mat-label>Busque um usuario</mat-label>
+          <input matInput id="input1" placeholder="Ex. Maria Nunes Da Silveira" [(ngModel)]="name">
+          <button mat-icon-button matSuffix class="botao" (click)="openDialog()"><mat-icon>add_circle_outline</mat-icon></button>
+          <button mat-icon-button matSuffix class="botao" (click)="list()"><mat-icon>refresh</mat-icon></button>
+    </mat-form-field>
+
+</mat-card>
+
+<div *ngFor="let user of users; let islast = last; let i = index">
+    <ng-template [ngIf]="islast">
+        <h1>Total de usuários cadastrados : {{i+1}}</h1>
+    </ng-template>
+</div>
+
+<table id="tabelinha">
+    <tr>
+        <th> ID </th>
+        <th> Nome </th>
+        <th> Usuário </th>
+        <th id="config"> Configurações </th>
+    </tr>
+
+    <tr *ngFor="let person of users | filter:name" >
+        <td> {{person.id}} </td>
+        <td> {{person.name}} </td>
+        <td> {{person.username}} </td>
+        <td><button mat-icon-button (click)="openDialog2(users, person.id, person.name, person.username, person.password)"><mat-icon>settings</mat-icon></button></td>
+    </tr> 
+</table>
+
+
+

@@ -1,0 +1,27 @@
+<mat-tab-group id="modal">
+    <mat-tab label="Excluir">
+        <h4>Deseja excluir mesmo?</h4>
+        <div>
+         <button mat-raised-button class="botao" class="botaozin" (click)="delete()"><mat-icon>delete</mat-icon></button>
+         <button mat-raised-button class="botao" (click)="cancel()">Sair</button>
+        </div>
+           
+    </mat-tab>
+
+    <mat-tab label="Editar senha">
+            <mat-form-field class="example-full-width" appearance="fill" >
+               <mat-label>Insira a nova senha</mat-label>
+               <input matInput placeholder="Min. 6 caracteres" class="inputzin" [(ngModel)]="password">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill" >
+               <mat-label>Confirme a nova senha</mat-label>
+               <input matInput placeholder="" class="inputzin" [(ngModel)]="cpassword">
+            </mat-form-field>
+            <div>
+               <button mat-raised-button class="botao" class="botaozin" (click)="edit(password, cpassword)"><mat-icon>edit</mat-icon></button>
+               <button mat-raised-button class="botao" (click)="cancel()">Sair</button>
+            </div>
+               
+    </mat-tab>
+</mat-tab-group>
+

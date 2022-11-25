@@ -1,0 +1,60 @@
+#modal{
+    align-items: center;
+}
+#botao{
+    display: block;
+    float: right;
+}
+
+h4{
+    margin: 10px;
+}
+#tabelinha{
+    margin-top: 30px;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    width: 60%;
+    margin: 10px auto;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  #tabelinha td, #tabelinha th {
+    background-color: rgba(255, 255, 255, 0.642);
+    padding: 5px;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.137);
+  }
+  #tabelinha tr:hover {background-color: rgb(51, 255, 0);}
+  
+  #tabelinha th {
+    border: 1px solid rgba(255, 255, 255, 0.411);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    background-color: rgb(35, 119, 214);
+    color: white;
+  }
+
+  mat-form-field{
+    margin-right: 10px;
+    margin-top: 5px;
+    
+}
+mat-tab{
+  margin-top: 10px;
+}
+
+.botao{
+  margin: 10px;
+  
+}
+.botaozin{
+  background-color: rgb(76, 3, 160);
+  color: white;
+}
+div{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+}

@@ -1,0 +1,32 @@
+<mat-card>
+        
+    <mat-form-field class="example-full-width" appearance="fill" >
+    <mat-label>Busque um cliente</mat-label>
+          <input matInput id="input1" placeholder="Ex. Antonio Fonsceca" [(ngModel)]="nome">
+          <button mat-icon-button matSuffix class="botao" (click)="openDialog()"><mat-icon>add_circle_outline</mat-icon></button>
+          <button mat-icon-button matSuffix class="botao" (click)="list()"><mat-icon>refresh</mat-icon></button>
+    </mat-form-field>
+</mat-card>
+
+<table id="tabelinha">
+    <tr>
+        <th> ID </th>
+        <th> Nome </th>
+        <th> CNPJ </th>
+        <th> Razão Social </th>
+        <th> Cliente desde </th>
+        <th id="config"> Configurações </th>
+    </tr>
+
+    <tr *ngFor="let person of clientes | filter:nome" >
+        <td> {{person.id}} </td>
+        <td> {{person.nome}} </td>
+        <td> {{person.CNPJ}} </td>
+        <td> {{person.razaoSocial}} </td>
+        <td> {{person.createdAt | date : 'dd/MM/yyyy HH:mm'}} </td>
+        <td><button mat-icon-button (click)="openDialog2(clientes, person.id, person.nome, person.CNPJ, person.razaoSocial, person.createdAt)"><mat-icon>settings</mat-icon></button></td>
+    </tr> 
+
+    
+</table>
+

@@ -1,0 +1,26 @@
+<mat-tab-group id="modal">
+    <mat-tab label="Inserir">
+        <mat-form-field class="example-full-width" appearance="fill" >
+            <mat-label>Insira o nome</mat-label>
+           <input matInput placeholder="Ex. Cleiton Luiz Salvador" class="inputzin" [(ngModel)]="name">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill" >
+           <mat-label>Insira o nome de usuário</mat-label>
+           <input matInput placeholder="Ex. Cleiton405" class="inputzin" [(ngModel)]="username">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill" >
+           <mat-label>Insira a senha</mat-label>
+           <input matInput placeholder="Min. 6 caracteres" class="inputzin" [(ngModel)]="password">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill" >
+           <mat-label>Confirmação de senha</mat-label>
+           <input matInput placeholder="" class="inputzin" [(ngModel)]="cpassword">
+        </mat-form-field>
+    </mat-tab>
+  </mat-tab-group>
+
+  <div mat-dialog-actions>
+   <button mat-raised-button class="botao" id="botao1" (click)="insert()"><mat-icon>add_circle_outline</mat-icon></button>
+   <button mat-raised-button class="botao" (click)="cancel()">Sair</button>
+  </div>
+

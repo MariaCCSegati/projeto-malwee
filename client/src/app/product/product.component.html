@@ -1,0 +1,34 @@
+<mat-card>
+        
+    <mat-form-field class="example-full-width" appearance="fill" >
+    <mat-label>Busque um produto</mat-label>
+          <input matInput id="input1" placeholder="Ex. Camiseta Cetim Rosa" [(ngModel)]="description">
+          <button mat-icon-button matSuffix class="botao" (click)="openDialog()"><mat-icon>add_circle_outline</mat-icon></button>
+          <button mat-icon-button matSuffix class="botao" (click)="list()"><mat-icon>refresh</mat-icon></button>
+    </mat-form-field>
+ 
+</mat-card>
+
+<table id="tabelinha">
+    <tr>
+        <th> ID </th>
+        <th> Descrição </th>
+        <th> Preço </th>
+        <th> Grupo </th>
+        <th> Subgrupo </th>
+        <th> Coleção </th>
+        <th id="config"> Configurações </th>
+    </tr>
+
+    <tr *ngFor="let person of produtos | filter: description" >
+        <td> {{person.id}} </td>
+        <td> {{person.description}} </td>
+        <td> R$ {{person.preco}} </td>
+        <td> {{person.group_description}} </td>
+        <td> {{person.subgroup_description}} </td>
+        <td> {{person.collection_description}} </td>
+        <td><button mat-icon-button (click)="openDialog2(produtos, person.id, person.description, person.preco)"><mat-icon>settings</mat-icon></button></td>
+    </tr> 
+
+    
+</table>

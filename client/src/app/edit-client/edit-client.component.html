@@ -1,0 +1,109 @@
+<mat-tab-group id="modal">
+   <mat-tab label="Excluir">
+      <h4>Deseja excluir mesmo?</h4>
+      <div> 
+         <button mat-raised-button class="botao" class="botaozin" (click)="delete()"><mat-icon>delete</mat-icon></button>
+         <button mat-raised-button class="botao" (click)="cancel()">Sair</button>
+      </div>
+      
+         
+   </mat-tab>
+
+   <mat-tab label="Editar">
+
+        <mat-form-field class="example-full-width" appearance="fill" >
+            <mat-label>Insira o nome</mat-label>
+           <input matInput placeholder="Ex. André Ricardo Rocha" class="inputzin" [(ngModel)]="nome">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill" >
+           <mat-label>Insira o cnpj</mat-label>
+           <input matInput placeholder="Ex. XX. XXX. XXX/0001-XX" class="inputzin" [(ngModel)]="cnpj">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill" >
+           <mat-label>Insira a Razão Social</mat-label>
+           <input matInput placeholder="Ex. Itaú Unibanco Banco Múltiplo S.A" class="inputzin" [(ngModel)]="razaoSocial">
+        </mat-form-field>
+        <div mat-dialog-actions> 
+         <button mat-raised-button class="botao" class="botaozin" (click)="edit(nome, cnpj, razaoSocial)"><mat-icon>edit</mat-icon></button>
+         <button mat-raised-button class="botao" (click)="cancel()">Sair</button>
+        </div>
+           
+   </mat-tab>
+
+   <mat-tab label="Endereços">
+      <table id="tabelinha">
+         <tr>
+            <th>Rua</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th>CEP</th>
+            <th>Número</th>
+            <th>Complemento</th>
+            <th>Ponto de referência</th>
+         </tr>
+
+         <tr *ngFor="let person of newAddress">
+            <td>{{person.rua}}</td>
+            <td>{{person.bairro}}</td>
+            <td>{{person.cidade}}</td>
+            <td>{{person.estado}}</td>
+            <td>{{person.cep}}</td>
+            <td>{{person.numero}}</td>
+            <td>{{person.complemento}}</td>
+            <td>{{person.referencia}}</td>
+         </tr>
+
+      </table>
+
+      <h1>Adicionar outro endereço</h1>
+      
+      <mat-form-field class="example-full-width" appearance="fill" >
+         <mat-label>Rua</mat-label>
+         <input matInput placeholder="Ex. Irmão Leão Magno" class="inputzin" [(ngModel)]="rua">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill" >
+         <mat-label>Bairro</mat-label>
+         <input matInput placeholder="Ex. Amizade" class="inputzin" [(ngModel)]="bairro">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill" >
+         <mat-label>Cidade</mat-label>
+         <input matInput placeholder="Ex. Jaraguá do Sul" class="inputzin" [(ngModel)]="cidade">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill" >
+         <mat-label>Estado</mat-label>
+         <input matInput placeholder="Ex. SC" class="inputzin" [(ngModel)]="estado">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill" >
+         <mat-label>CEP</mat-label>
+         <input matInput placeholder="Ex. 00000-000" class="inputzin" [(ngModel)]="cep">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill" >
+        <mat-label>Número</mat-label>
+         <input matInput placeholder="Ex. 140" class="inputzin" [(ngModel)]="numero">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill" >
+        <mat-label>Complemento</mat-label>
+         <input matInput placeholder="Ex. apt. 204" class="inputzin" [(ngModel)]="complemento">
+        </mat-form-field>
+        
+        <mat-form-field class="example-full-width" appearance="fill" >
+        <mat-label>Ponto de referência</mat-label>
+         <input matInput placeholder="Ex. Bar do Arlindo" class="inputzin" [(ngModel)]="referencia">
+        </mat-form-field>
+        <div>
+         <button mat-raised-button class="botao" id="botao1" (click)="addAddress()">Confirmar</button>
+         <button mat-raised-button class="botao" (click)="cancel()">Sair</button>
+        </div>
+  
+ </mat-tab>
+</mat-tab-group>
+
+   
+   <!--(click)="cancel()"-->

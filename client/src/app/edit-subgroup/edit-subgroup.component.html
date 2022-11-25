@@ -1,0 +1,28 @@
+<mat-tab-group id="modal">
+<mat-tab label="Excluir">
+        <h4>Deseja excluir mesmo?</h4>
+        <div >
+        <button mat-raised-button class="botao" class="botaozin" (click)="delete()"><mat-icon>delete</mat-icon></button>
+        <button mat-raised-button class="botao" (click)="cancel()">Sair</button>
+        </div>
+        
+</mat-tab>
+
+<mat-tab label="Editar">
+        <mat-form-field  class="example-full-width" appearance="fill" >
+            <mat-label>Insira a nova descrição</mat-label>
+            <input matInput placeholder="Ex. Meia" class="inputzin" [(ngModel)]="description">
+            </mat-form-field>   <br>
+            <mat-label>Selecione um grupo</mat-label>
+            <app-dropdown [array]="group" [idField]="'id'" [textField]="'description'"  [(ngModel)]="selectedGroup"></app-dropdown>
+            <div>
+                <button mat-raised-button class="botao" class="botaozin" (click)="edit(description)"><mat-icon>edit</mat-icon></button>
+                <button mat-raised-button class="botao" (click)="cancel()">Sair</button>
+            </div>
+           
+</mat-tab>
+
+
+</mat-tab-group>
+
+

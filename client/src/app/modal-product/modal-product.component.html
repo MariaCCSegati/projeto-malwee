@@ -1,0 +1,35 @@
+<mat-tab-group id="modal">
+    <mat-tab label="Inserir">
+        <mat-form-field class="example-full-width" appearance="fill" id="primeiro" >
+            <mat-label>Insira a descrição</mat-label>
+           <input matInput placeholder="Ex. Bermuda cargo" class="inputzin" [(ngModel)]="description">
+        </mat-form-field><br>
+        <mat-form-field class="example-full-width" appearance="fill" >
+           <mat-label>Insira o preço</mat-label>
+           <input matInput placeholder="Ex. 40.70" class="inputzin" [(ngModel)]="preco">
+        </mat-form-field><br>
+        <div id="dropdown">
+          <mat-label>Selecione um grupo</mat-label>
+        
+          <app-dropdown [array]="group" [idField]="'id'" [textField]="'description'"  [(ngModel)]="selectedGroup"></app-dropdown><br>
+  
+          <mat-label>Selecione um subgrupo</mat-label>
+          
+          <app-dropdown [array]="subgroup" [idField]="'id'" [textField]="'description'"  [(ngModel)]="selectedGroup2"></app-dropdown><br>
+          
+          <mat-label>Selecione um coleção</mat-label>
+          
+          <app-dropdown [array]="collection" [idField]="'id'" [textField]="'description'"  [(ngModel)]="selectedGroup3"></app-dropdown>
+        </div>
+        
+          
+    </mat-tab>
+
+  </mat-tab-group>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button class="botao" id="botao1" (click)="insert()"><mat-icon>add_circle_outline</mat-icon></button>
+    <button mat-raised-button class="botao" (click)="cancel()">Sair</button>
+  </div>
+  
+
