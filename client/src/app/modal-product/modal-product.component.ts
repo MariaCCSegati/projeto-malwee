@@ -39,10 +39,10 @@ export class ModalProductComponent implements OnInit {
     public dialogRef: MatDialogRef<ModalProductComponent>, private http : HttpClient, private httpService : HttpService, private _snackBar: MatSnackBar
   ) { }
 
-  ngOnInit(): void {
-    this.get();
-    this.getSubgroup();
-    this.getCollection();
+  async ngOnInit() {
+    await this.get();
+    await this.getSubgroup();
+    await this.getCollection();
   }
 
   openSnackBar() {
@@ -56,7 +56,7 @@ export class ModalProductComponent implements OnInit {
   }
 
   async getSubgroup(){
-    this.subgroup = await this.httpService.get('subgroup');
+      this.subgroup = await this.httpService.get('subgroup');  
   }
   
   async getCollection(){
