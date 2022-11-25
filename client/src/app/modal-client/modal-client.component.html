@@ -8,10 +8,17 @@
            <input matInput placeholder="Ex. André Ricardo Rocha" class="inputzin" [(ngModel)]="nome">
         </mat-form-field>
 
-        <mat-form-field class="example-full-width" appearance="fill" >
+       
+         <mat-form-field hintLabel="É preciso 14 caracteres!" appearance="fill">
+           <mat-label>Insira o cnpj</mat-label>
+           <input matInput #input maxlength="14" placeholder="Ex. XX. XXX. XXX/0001-XX" class="inputzin" [(ngModel)]="cnpj">
+           <mat-hint align="end">{{input.value.length}}/14</mat-hint>
+         </mat-form-field>
+
+        <!--<mat-form-field class="example-full-width" appearance="fill" >
            <mat-label>Insira o cnpj</mat-label>
            <input matInput placeholder="Ex. XX. XXX. XXX/0001-XX" class="inputzin" [(ngModel)]="cnpj">
-        </mat-form-field>
+        </mat-form-field>-->
 
         <mat-form-field class="example-full-width" appearance="fill" >
            <mat-label>Insira a Razão Social</mat-label>
@@ -73,9 +80,9 @@
          <input matInput placeholder="Ex. Bar do Arlindo" class="inputzin" [(ngModel)]="referencia">
         </mat-form-field>
 
-      </mat-tab>
+   </mat-tab>
 
-  </mat-tab-group>
+</mat-tab-group>
   <div mat-dialog-actions>
    <button mat-raised-button class="botao" id="botao1" (click)="insert(); addAddress();">Confirmar</button>
    <button mat-raised-button class="botao" (click)="cancel()">Sair</button>
