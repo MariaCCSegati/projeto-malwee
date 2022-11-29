@@ -12,10 +12,10 @@ knl.post('client', async(req, resp) => {
        // clienteDesde : Joi.date().required(),
 
         address: Joi.array().items(Joi.object({
-            rua : Joi.string().min(3).max(100),
+            lorgadouro : Joi.string().min(3).max(100),
             bairro : Joi.string().min(2).max(30),
             cidade : Joi.string().min(3).max(60),
-            estado : Joi.string().min(3).max(20),
+            uf : Joi.string().min(3).max(20),
             cep : Joi.string().min(1).max(14),
             numero: Joi.number().min(1),
             complemento: Joi.string().min(3).max(100),

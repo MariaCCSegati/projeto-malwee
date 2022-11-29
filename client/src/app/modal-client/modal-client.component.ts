@@ -4,6 +4,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CpuInfo } from 'os';
 import { CompleteNotification } from 'rxjs';
 import { HttpService } from 'src/services/http.service';
+import { CepServiceService } from '../cep-service.service';
+
 export interface DialogDataClient{
   id: number,
   nome: string,
@@ -35,19 +37,19 @@ export class ModalClientComponent implements OnInit {
   clientes:Array<any> = [];
   id: number | undefined;
   newAddress: Array<any> = [];
-  rua: string = '';
   bairro:string = '';
   cidade:string = '';
-  estado:string = '';
+  uf:string = '';
   cep:string = '';
   numero:string = '';
   complemento:string = '';
   referencia:string = '';
   createdAt: Date | undefined;
+  logradouro: string='';
   
 
   constructor(
-    public dialogRef: MatDialogRef<ModalClientComponent>, private http : HttpClient, private httpService : HttpService, @Inject(MAT_DIALOG_DATA) public data: DialogDataClient
+    public dialogRef: MatDialogRef<ModalClientComponent>, private http : HttpClient, private httpService : HttpService, @Inject(MAT_DIALOG_DATA) public data: DialogDataClient, private cepsService: CepServiceService
   ) { }
 
   ngOnInit(): void {
@@ -57,10 +59,19 @@ export class ModalClientComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  consultaCep(){
+    this.cepsService.buscar(String(this.cep)).subscribe((dados) => this.populaForm(dados));
+  }
 
+  populaForm(dados: any){
+      this.logradouro = dados.logradouro
+      this.bairro= dados.bairro,
+      this.cidade= dados.localidade,
+      this.uf= dados.uf
+  }
   async addAddress(){
-    this.newAddress.push({"rua" : this.rua, "bairro" : this.bairro,
-      "cidade" : this.cidade, "estado" : this.estado, "cep": this.cep, "numero": this.numero, "complemento": this.complemento, "referencia" : this.referencia});
+    this.newAddress.push({"logradouro" : this.logradouro, "bairro" : this.bairro,
+      "cidade" : this.cidade, "uf" : this.uf, "cep": this.cep, "numero": this.numero, "complemento": this.complemento, "referencia" : this.referencia});
     console.log(this.newAddress)
   }
 
