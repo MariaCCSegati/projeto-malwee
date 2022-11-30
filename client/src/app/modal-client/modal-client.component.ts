@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { CpuInfo } from 'os';
 import { CompleteNotification } from 'rxjs';
 import { HttpService } from 'src/services/http.service';
@@ -46,13 +47,18 @@ export class ModalClientComponent implements OnInit {
   referencia:string = '';
   createdAt: Date | undefined;
   logradouro: string='';
-  
+  message: string = '';
+  action: string = '';
 
   constructor(
-    public dialogRef: MatDialogRef<ModalClientComponent>, private http : HttpClient, private httpService : HttpService, @Inject(MAT_DIALOG_DATA) public data: DialogDataClient, private cepsService: CepServiceService
+    public dialogRef: MatDialogRef<ModalClientComponent>, private http : HttpClient, private httpService : HttpService, @Inject(MAT_DIALOG_DATA) public data: DialogDataClient, private cepsService: CepServiceService, private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
+  }
+
+  openSnackBar() {
+    this._snackBar.open(this.message, this.action);
   }
 
   cancel(): void {
@@ -76,12 +82,19 @@ export class ModalClientComponent implements OnInit {
   }
 
   async insert(){
+    this.addAddress();
     if(this.cnpj.length < 14 || this.cnpj.length > 14){
-      alert('cnpj precisa ter no 14 caracteres')
+      this.message = 'cnpj precisa ter no 14 caracteres!'
+      this.action = 'OK'
+      this.openSnackBar();
+
     } else {
       this.clientes =  await this.httpService.post('client', {nome : this.nome, CNPJ : this.cnpj, razaoSocial : this.razaoSocial, clienteDesde : this.createdAt, address: this.newAddress});
       console.log(this.nome);
-      alert('adicionado');
+      this.message = 'Adicionado!'
+      this.action = 'OK'
+      this.openSnackBar();
+      this.dialogRef.close();
     }
     
   }

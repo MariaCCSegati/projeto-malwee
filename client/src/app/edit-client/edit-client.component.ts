@@ -5,6 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { throws } from 'assert';
 import { HttpService } from 'src/services/http.service';
+import { CepServiceService } from '../cep-service.service';
 export interface DialogDataClient{
   id: number,
   nome: string,
@@ -36,10 +37,10 @@ export class EditClientComponent implements OnInit {
   modal: string = '';
   id: any;
   newAddress: Array<any> = [];
-  rua: string = '';
+  logradouro: string = '';
   bairro:string = '';
   cidade:string = '';
-  estado:string = '';
+  uf:string = '';
   cep:string = '';
   numero:string = '';
   complemento:string = '';
@@ -47,7 +48,7 @@ export class EditClientComponent implements OnInit {
   message: string = '';
   action: string = '';
 
-  constructor(public dialogRef: MatDialogRef<EditClientComponent>, private httpService : HttpService, @Inject(MAT_DIALOG_DATA) public data: DialogDataClient, private _snackBar: MatSnackBar) { }
+  constructor(public dialogRef: MatDialogRef<EditClientComponent>, private httpService : HttpService, @Inject(MAT_DIALOG_DATA) public data: DialogDataClient, private _snackBar: MatSnackBar, private cepsService: CepServiceService) { }
 
   ngOnInit(): void {
   }
@@ -56,6 +57,17 @@ export class EditClientComponent implements OnInit {
     //this.message = 'Adicionado!'
     //this.action = 'Ok'
     this._snackBar.open(this.message, this.action);
+  }
+  
+  consultaCep(){
+    this.cepsService.buscar(String(this.cep)).subscribe((dados) => this.populaForm(dados));
+  }
+
+  populaForm(dados: any){
+      this.logradouro = dados.logradouro
+      this.bairro= dados.bairro,
+      this.cidade= dados.localidade,
+      this.uf= dados.uf
   }
 
   async delete(){
@@ -85,8 +97,8 @@ export class EditClientComponent implements OnInit {
   //}
 
   async addAddress(){
-    this.newAddress.push({"rua" : this.rua, "bairro" : this.bairro,
-      "cidade" : this.cidade, "estado" : this.estado, "cep": this.cep, "numero": this.numero, "complemento": this.complemento, "referencia" : this.referencia});
+    this.newAddress.push({"logradouro" : this.logradouro, "bairro" : this.bairro,
+      "cidade" : this.cidade, "uf" : this.uf, "cep": this.cep, "numero": this.numero, "complemento": this.complemento, "referencia" : this.referencia});
     console.log(this.newAddress)
   }
 

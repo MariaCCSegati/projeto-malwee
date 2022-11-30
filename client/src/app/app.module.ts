@@ -34,6 +34,7 @@ import { EditProductComponent } from './edit-product/edit-product.component';
 import { EditClientComponent } from './edit-client/edit-client.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
+import { PedidoComponent } from './pedido/pedido.component';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { DropdownComponent } from './dropdown/dropdown.component';
     EditClientComponent,
     EditUserComponent,
     DropdownComponent,
+    PedidoComponent,
   ],
   imports: [
     RoutesModule,

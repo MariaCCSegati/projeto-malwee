@@ -12,14 +12,14 @@ knl.post('client', async(req, resp) => {
        // clienteDesde : Joi.date().required(),
 
         address: Joi.array().items(Joi.object({
-            lorgadouro : Joi.string().min(3).max(100),
+            logradouro : Joi.string().min(3).max(100),
             bairro : Joi.string().min(2).max(30),
             cidade : Joi.string().min(3).max(60),
-            uf : Joi.string().min(3).max(20),
+            uf : Joi.string().min(1).max(20),
             cep : Joi.string().min(1).max(14),
             numero: Joi.number().min(1),
-            complemento: Joi.string().min(3).max(100),
-            referencia: Joi.string().min(3).max(100),
+            complemento: Joi.string().min(1).max(100),
+            referencia: Joi.string().min(1).max(100),
         }))
     })
 
@@ -44,10 +44,10 @@ knl.post('client', async(req, resp) => {
 
     for (const endereco of req.body.address){
     const resultado = knl.sequelize().models.address.build({
-        rua: endereco.rua,
+        logradouro: endereco.logradouro,
         bairro : endereco.bairro,
         cidade : endereco.cidade,
-        estado : endereco.estado,
+        uf : endereco.uf,
         cep : endereco.cep,
         numero: endereco.numero,
         complemento:endereco.complemento,
@@ -58,7 +58,7 @@ knl.post('client', async(req, resp) => {
 }
     
     resp.end();
-}, securityConsts.USER_TYPE_PUBLIC);
+});
 
 knl.get('client', async(req, resp) => {
 
