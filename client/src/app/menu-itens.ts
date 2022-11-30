@@ -1,6 +1,7 @@
 import { ClientComponent } from "./client/client.component";
 import { CollectionComponent } from "./collection/collection.component";
 import { GroupComponent } from "./group/group.component";
+import { PedidoComponent } from "./pedido/pedido.component";
 import { ProductComponent } from "./product/product.component";
 import { SubgroupComponent } from "./subgroup/subgroup.component";
 import { UserComponent } from "./user/user.component";
@@ -41,5 +42,11 @@ export const MenuItens = [
         caption : 'Usuário',
         icon : 'person_pin',
         component: UserComponent,
+    },
+    {
+        path: 'pedido',
+        caption : 'Pedidos',
+        icon : 'shopping_basket',
+        component: PedidoComponent,
     }
 ]

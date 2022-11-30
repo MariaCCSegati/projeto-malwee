@@ -43,5 +43,6 @@ module.exports = (sequelize) => {
         fkClient:{
             type:Sequelize.INTEGER,
         }
+        
     })
 }
