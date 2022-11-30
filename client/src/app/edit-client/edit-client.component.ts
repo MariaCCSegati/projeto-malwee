@@ -58,7 +58,7 @@ export class EditClientComponent implements OnInit {
     //this.action = 'Ok'
     this._snackBar.open(this.message, this.action);
   }
-  
+
   consultaCep(){
     this.cepsService.buscar(String(this.cep)).subscribe((dados) => this.populaForm(dados));
   }
@@ -89,17 +89,11 @@ export class EditClientComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  //async addAddress(rua: any, bairro: any, cidade: any, estado: any, cep: any, numero: any, complemento: any, referencia: any){
-  //  this.newAddress.push({rua : rua, bairro : bairro,
-  //    cidade : cidade, estado : estado, cep: cep, numero: numero, complemento: complemento, referencia : referencia, fkClient: this.data.id});
-  //  
-  //  console.log(this.newAddress)
-  //}
-
   async addAddress(){
     this.newAddress.push({"logradouro" : this.logradouro, "bairro" : this.bairro,
       "cidade" : this.cidade, "uf" : this.uf, "cep": this.cep, "numero": this.numero, "complemento": this.complemento, "referencia" : this.referencia});
     console.log(this.newAddress)
+    
   }
 
   cancel(): void {

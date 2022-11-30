@@ -81,6 +81,22 @@ export class ModalClientComponent implements OnInit {
     console.log(this.newAddress)
   }
 
+  async novo(){
+    this.addAddress();
+    this.reset()
+  }
+
+  reset(){
+    this.bairro     = '';
+    this.cidade     = '';
+    this.uf         = '';
+    this.cep        = '';
+    this.numero     = '';
+    this.complemento= '';
+    this.referencia = '';
+    this.logradouro ='';
+  }
+
   async insert(){
     this.addAddress();
     if(this.cnpj.length < 14 || this.cnpj.length > 14){
