@@ -36,29 +36,29 @@
         <h1>Informações Adicionais</h1>
 
         <mat-form-field class="example-full-width" appearance="fill" >
-         <mat-label>Rua</mat-label>
-         <input matInput placeholder="Ex. Irmão Leão Magno" class="inputzin" [(ngModel)]="rua">
+          <mat-label>CEP</mat-label>
+          <input matInput placeholder="Ex. 00000-000" class="inputzin" [(ngModel)]="cep" (blur)="consultaCep()">
+         </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill" >
+         <mat-label>Logradouro</mat-label>
+         <input matInput placeholder="Ex. Irmão Leão Magno" class="inputzin" [(ngModel)]="logradouro">
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill" >
          <mat-label>Bairro</mat-label>
-         <input matInput placeholder="Ex. Amizade" class="inputzin" [(ngModel)]="bairro">
+         <input matInput placeholder="Ex. Amizade" class="inputzin" [(ngModel)]="bairro" >
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill" >
          <mat-label>Cidade</mat-label>
-         <input matInput placeholder="Ex. Jaraguá do Sul" class="inputzin" [(ngModel)]="cidade">
+         <input matInput placeholder="Ex. Jaraguá do Sul" class="inputzin" [(ngModel)]="cidade" >
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill" >
-         <mat-label>Estado</mat-label>
-         <input matInput placeholder="Ex. SC" class="inputzin" [(ngModel)]="estado">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width" appearance="fill" >
-         <mat-label>CEP</mat-label>
-         <input matInput placeholder="Ex. 00000-000" class="inputzin" [(ngModel)]="cep">
-        </mat-form-field>
+          <mat-label>UF</mat-label>
+          <input matInput placeholder="Ex. Jaraguá do Sul" class="inputzin" [(ngModel)]="uf">
+         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill" >
         <mat-label>Número</mat-label>

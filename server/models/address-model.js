@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
             autoIncrement : true,
             allowNull : true,
         },
-        rua : {
+        logradouro : {
             type : Sequelize.STRING(100),
             allowNull : false,
         },
@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
             type : Sequelize.STRING(100),
             allowNull : false,
         },
-        estado : {
+        uf : {
             type : Sequelize.STRING(100),
             allowNull : false,
         },
