@@ -9,7 +9,8 @@ export interface DialogDataClient {
   nome: string,
   CNPJ: string, 
   razaoSocial: string, 
-  clienteDesde: string
+  clienteDesde: string,
+  logradouro: string
 }
 
 @Component({
@@ -26,6 +27,7 @@ export class ClientComponent implements OnInit {
   clientes:Array<any> = []
   modal: string = '';
   id: any;
+  address:Array<any> = []
 
   constructor(private http : HttpClient, private httpService : HttpService, public dialog: MatDialog) { }
 
@@ -37,7 +39,7 @@ export class ClientComponent implements OnInit {
   openDialog(){
     const dialogRef = this.dialog.open(ModalClientComponent, {
       width: '500px',
-      data: {id : this.id, nome : this.nome, cnpj : this.cnpj, razaoSocial : this.razaoSocial, clienteDesde : this.clienteDesde}
+      data: {id : this.id, nome : this.nome, cnpj : this.cnpj, razaoSocial : this.razaoSocial, clienteDesde : this.clienteDesde, address: this.address}
     });
    
 
@@ -50,7 +52,7 @@ export class ClientComponent implements OnInit {
   openDialog2(clientes: any, id: any, nome: any, CNPJ: any, razaoSocial: any, clienteDesde: any){
     const dialogRef = this.dialog.open(EditClientComponent, {
       width: '500px',
-      data: {clientes: clientes, id : id, nome : nome, cnpj : CNPJ, razaoSocial : razaoSocial, clienteDesde : clienteDesde}
+      data: {clientes: clientes, id : id, nome : nome, cnpj : CNPJ, razaoSocial : razaoSocial, clienteDesde : clienteDesde, address: this.address}
     });
    
 
