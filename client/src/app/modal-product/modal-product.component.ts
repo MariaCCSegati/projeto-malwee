@@ -34,6 +34,7 @@ export class ModalProductComponent implements OnInit {
   colecao : string = "";
   message: string = '';
   action: string = '';
+  lala: string = ''
 
   constructor(
     public dialogRef: MatDialogRef<ModalProductComponent>, private http : HttpClient, private httpService : HttpService, private _snackBar: MatSnackBar
@@ -65,6 +66,7 @@ export class ModalProductComponent implements OnInit {
 
   cancel(): void {
     this.dialogRef.close();
+
   }
 
   async insert(){

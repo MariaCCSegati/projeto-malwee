@@ -5,6 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { throws } from 'assert';
 import { HttpService } from 'src/services/http.service';
+import { threadId } from 'worker_threads';
 import { CepServiceService } from '../cep-service.service';
 export interface DialogDataClient{
   logradouro: string;
@@ -57,8 +58,6 @@ export class EditClientComponent implements OnInit {
   }
 
   openSnackBar() {
-    //this.message = 'Adicionado!'
-    //this.action = 'Ok'
     this._snackBar.open(this.message, this.action);
   }
 
@@ -81,32 +80,17 @@ export class EditClientComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  async edit(nome: any, cnpj: any, razaoSocial: any, logradouro: any){
+  async edit(nome: any, cnpj: any, razaoSocial: any, referencia: any){
     this.data.nome = nome;
     this.data.CNPJ = cnpj;
     this.data.razaoSocial = razaoSocial;
-    this.data.logradouro = logradouro
-    console.log(logradouro)
-    this.editAddress(logradouro);
-    this.clientes =  await this.httpService.put('client/', {id: this.data.id, nome: this.data.nome, cnpj: this.data.CNPJ, razaoSocial: this.data.razaoSocial, address: this.newAddress});
+    this.data.referencia = referencia;
+    this.clientes =  await this.httpService.put('client/', {id: this.data.id, nome: this.data.nome, cnpj: this.data.CNPJ, razaoSocial: this.data.razaoSocial, address: this.referencia});
     this.message = 'Editado!'
     this.action = 'OK'
     this.openSnackBar();
     this.dialogRef.close();
   }
-
-  async editAddress(logradouro: any){
-    this.logradouro = logradouro;
-    //this.bairro = bairro;
-    //this.cidade = cidade,
-    //this.uf = uf;
-    //this.cep = cep;
-    //this.numero = numero;
-    //this.complemento = complemento;
-    //this.referencia = referencia;
-    this.newAddress.push({"logradouro" : logradouro});
-  }
-
 
   async addAddress(){
     this.newAddress.push({"logradouro" : this.logradouro, "bairro" : this.bairro,
