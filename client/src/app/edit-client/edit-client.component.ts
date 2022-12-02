@@ -30,6 +30,7 @@ export interface DialogDataClient{
   templateUrl: './edit-client.component.html',
   styleUrls: ['./edit-client.component.scss']
 })
+
 export class EditClientComponent implements OnInit {
 
   nome:string = '';
@@ -95,11 +96,14 @@ export class EditClientComponent implements OnInit {
   async addAddress(){
     this.newAddress.push({"logradouro" : this.logradouro, "bairro" : this.bairro,
       "cidade" : this.cidade, "uf" : this.uf, "cep": this.cep, "numero": this.numero, "complemento": this.complemento, "referencia" : this.referencia});
-    console.log(this.newAddress)
-    
+    console.log(this.newAddress); 
   }
 
   cancel(): void {
     this.dialogRef.close();
+  }
+
+  async getClient(){
+    this.clientes = await this.httpService.get('client');
   }
 }
