@@ -9,6 +9,7 @@ import { threadId } from 'worker_threads';
 import { CepServiceService } from '../cep-service.service';
 export interface DialogDataClient{
   logradouro: string;
+  clientes : Array<any>;
   address: any[];
   id: number,
   nome: string,
@@ -51,7 +52,8 @@ export class EditClientComponent implements OnInit {
   referencia:string = '';
   message: string = '';
   action: string = '';
-  endereco: Array<any> = [];
+  enderecos: Array<any> = [];
+  selectedGroup: any;
 
   constructor(public dialogRef: MatDialogRef<EditClientComponent>, private httpService : HttpService, @Inject(MAT_DIALOG_DATA) public data: DialogDataClient, private _snackBar: MatSnackBar, private cepsService: CepServiceService) { }
 
@@ -81,16 +83,18 @@ export class EditClientComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  async edit(nome: any, cnpj: any, razaoSocial: any, referencia: any){
-    this.data.nome = nome;
-    this.data.CNPJ = cnpj;
-    this.data.razaoSocial = razaoSocial;
-    this.data.referencia = referencia;
-    this.clientes =  await this.httpService.put('client/', {id: this.data.id, nome: this.data.nome, cnpj: this.data.CNPJ, razaoSocial: this.data.razaoSocial, address: this.referencia});
+  async edit(){
+    this.editAddress();
+    this.clientes =  await this.httpService.put('client/', {id: this.data.id, nome: this.data.nome, cnpj: this.data.CNPJ, razaoSocial: this.data.razaoSocial, address: this.enderecos});
     this.message = 'Editado!'
     this.action = 'OK'
     this.openSnackBar();
     this.dialogRef.close();
+  }
+
+  async editAddress(){
+    this.enderecos.push({logradouro :this.logradouro, bairro :this.bairro, localidade :this.cidade,
+       uf :this.uf, cep :this.cep, numero :this.numero, complemento :this.complemento, idEndereco : this.selectedGroup})
   }
 
   async addAddress(){
@@ -99,11 +103,12 @@ export class EditClientComponent implements OnInit {
     console.log(this.newAddress); 
   }
 
+  async getAddress(){
+    this.enderecos = await this.httpService.get(`client/${this.data.id}`);
+  }
+
   cancel(): void {
     this.dialogRef.close();
   }
 
-  async getClient(){
-    this.clientes = await this.httpService.get('client');
-  }
 }
