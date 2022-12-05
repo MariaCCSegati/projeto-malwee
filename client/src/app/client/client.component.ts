@@ -10,7 +10,8 @@ export interface DialogDataClient {
   CNPJ: string, 
   razaoSocial: string, 
   clienteDesde: string,
-  logradouro: string
+  logradouro: string,
+  referencia: string
 }
 
 @Component({

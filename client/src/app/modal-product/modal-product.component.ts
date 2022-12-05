@@ -65,6 +65,7 @@ export class ModalProductComponent implements OnInit {
 
   cancel(): void {
     this.dialogRef.close();
+
   }
 
   async insert(){

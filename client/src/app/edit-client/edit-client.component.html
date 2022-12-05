@@ -15,21 +15,25 @@
             <mat-label>Insira o nome</mat-label>
            <input matInput placeholder="Ex. André Ricardo Rocha" class="inputzin" [(ngModel)]="nome">
         </mat-form-field>
+
         <mat-form-field hintLabel="É preciso 14 caracteres!" appearance="fill">
          <mat-label>Insira o cnpj</mat-label>
          <input matInput #input maxlength="14" placeholder="Ex. XX. XXX. XXX/0001-XX" class="inputzin" [(ngModel)]="cnpj">
          <mat-hint align="end">{{input.value.length}}/14</mat-hint>
        </mat-form-field> 
+
         <mat-form-field class="example-full-width" appearance="fill" >
            <mat-label>Insira a Razão Social</mat-label>
            <input matInput placeholder="Ex. Itaú Unibanco Banco Múltiplo S.A" class="inputzin" [(ngModel)]="razaoSocial">
         </mat-form-field>
+
         <mat-form-field class="example-full-width" appearance="fill" >
-         <mat-label>Insira o logradouro</mat-label>
-         <input matInput placeholder="Ex. Itaú Unibanco Banco Múltiplo S.A" class="inputzin" [(ngModel)]="logradouro">
+         <mat-label>Insira o referencia</mat-label>
+         <input matInput placeholder="Ex. Itaú Unibanco Banco Múltiplo S.A" class="inputzin" [(ngModel)]="referencia">
       </mat-form-field>
+
         <div mat-dialog-actions> 
-         <button mat-raised-button class="botao" class="botaozin" (click)="edit(nome, cnpj, razaoSocial, logradouro)"><mat-icon>edit</mat-icon></button>
+         <button mat-raised-button class="botao" class="botaozin" (click)="edit()"><mat-icon>edit</mat-icon></button>
          <button mat-raised-button class="botao" (click)="cancel()">Sair</button>
         </div>
            
@@ -46,8 +50,8 @@
             <th>Número</th>
             <th>Complemento</th>
             <th>Ponto de referência</th>
+         
          </tr>
-
          <tr *ngFor="let person of clientes">
             <td>{{person.logradouro}}</td>
             <td>{{person.bairro}}</td>
@@ -57,55 +61,9 @@
             <td>{{person.numero}}</td>
             <td>{{person.complemento}}</td>
             <td>{{person.referencia}}</td>
+          
          </tr>
-        
       </table>
-
-     <!-- <h1>Adicionar outro endereço</h1>
-
-      <mat-form-field class="example-full-width" appearance="fill" >
-         <mat-label>CEP</mat-label>
-         <input matInput placeholder="Ex. 00000-000" class="inputzin" [(ngModel)]="cep" (blur)="consultaCep()">
-        </mat-form-field>
-      
-      <mat-form-field class="example-full-width" appearance="fill" >
-         <mat-label>Logradouro</mat-label>
-         <input matInput placeholder="Ex. Irmão Leão Magno" class="inputzin" [(ngModel)]="logradouro">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width" appearance="fill" >
-         <mat-label>Bairro</mat-label>
-         <input matInput placeholder="Ex. Amizade" class="inputzin" [(ngModel)]="bairro">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width" appearance="fill" >
-         <mat-label>Cidade</mat-label>
-         <input matInput placeholder="Ex. Jaraguá do Sul" class="inputzin" [(ngModel)]="cidade">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width" appearance="fill" >
-         <mat-label>UF</mat-label>
-         <input matInput placeholder="Ex. SC" class="inputzin" [(ngModel)]="uf">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width" appearance="fill" >
-        <mat-label>Número</mat-label>
-         <input matInput placeholder="Ex. 140" class="inputzin" [(ngModel)]="numero">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width" appearance="fill" >
-        <mat-label>Complemento</mat-label>
-         <input matInput placeholder="Ex. apt. 204" class="inputzin" [(ngModel)]="complemento">
-        </mat-form-field>
-        
-        <mat-form-field class="example-full-width" appearance="fill" >
-        <mat-label>Ponto de referência</mat-label>
-         <input matInput placeholder="Ex. Bar do Arlindo" class="inputzin" [(ngModel)]="referencia">
-        </mat-form-field>
-        <div>
-         <button mat-raised-button class="botao" id="botao1" (click)="addAddress()">Confirmar</button>
-         <button mat-raised-button class="botao" (click)="cancel()">Sair</button>
-        </div>-->
   
  </mat-tab>
 </mat-tab-group>
