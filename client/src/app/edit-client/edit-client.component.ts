@@ -83,8 +83,11 @@ export class EditClientComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  async edit(){
+  async edit(nome: any, cnpj: any, razaoSocial: any){
     this.editAddress();
+    this.nome = nome;
+    this.cnpj = cnpj;
+    this.razaoSocial = razaoSocial;
     this.clientes =  await this.httpService.put('client/', {id: this.data.id, nome: this.data.nome, cnpj: this.data.CNPJ, razaoSocial: this.data.razaoSocial, address: this.enderecos});
     this.message = 'Editado!'
     this.action = 'OK'
