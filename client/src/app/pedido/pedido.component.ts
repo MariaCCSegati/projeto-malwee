@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
+import { HttpService } from 'src/services/http.service';
 
 @Component({
   selector: 'app-pedido',
@@ -9,7 +10,11 @@ import { map, Observable, startWith } from 'rxjs';
 })
 export class PedidoComponent implements OnInit {
 
-  constructor() { }
+  selectedEndereco: number | undefined;
+  public enderecos : Array<any> = [];
+  
+
+  constructor(private httpService : HttpService) { }
 
   myControl = new FormControl('');
   options: string[] = ['One', 'Two', 'Three'];
@@ -26,5 +31,9 @@ export class PedidoComponent implements OnInit {
     const filterValue = value.toLowerCase();
 
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  async getEndereco(){
+    this.enderecos = await this.httpService.get('collection');
   }
 }
