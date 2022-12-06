@@ -89,7 +89,7 @@ knl.put('client', async(req, resp) => {
         nome : req.body.nome,
         CNPJ : req.body.cnpj,
         razaoSocial : req.body.razaoSocial,
-        //clienteDesde : req.body.clienteDesde,
+        address: req.body.address,
     },{
         where : {
             id: req.body.id
