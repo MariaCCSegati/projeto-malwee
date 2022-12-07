@@ -73,9 +73,9 @@ knl.get('client', async(req, resp) => {
 
 knl.get('client/:id', async(req, resp) => {
 
-    const result = await knl.sequelize().models.client.findAll({
+    const result = await knl.sequelize().models.address.findAll({
         where : {
-            id : req.params.id
+            fkClient : req.params.id
         }
     });
     console.log(result);

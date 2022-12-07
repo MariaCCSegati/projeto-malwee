@@ -27,11 +27,6 @@
            <input matInput placeholder="Ex. Itaú Unibanco Banco Múltiplo S.A" class="inputzin" [(ngModel)]="razaoSocial">
         </mat-form-field>
 
-        <mat-form-field class="example-full-width" appearance="fill" >
-         <mat-label>Insira o referencia</mat-label>
-         <input matInput placeholder="Ex. Itaú Unibanco Banco Múltiplo S.A" class="inputzin" [(ngModel)]="referencia">
-      </mat-form-field>
-
         <div mat-dialog-actions> 
          <button mat-raised-button class="botao" class="botaozin" (click)="edit(nome, cnpj, razaoSocial)"><mat-icon>edit</mat-icon></button>
          <button mat-raised-button class="botao" (click)="cancel()">Sair</button>
@@ -50,9 +45,8 @@
             <th>Número</th>
             <th>Complemento</th>
             <th>Ponto de referência</th>
-         
          </tr>
-         <tr *ngFor="let person of clientes">
+         <tr *ngFor="let person of enderecos">
             <td>{{person.logradouro}}</td>
             <td>{{person.bairro}}</td>
             <td>{{person.cidade}}</td>
@@ -60,10 +54,8 @@
             <td>{{person.cep}}</td>
             <td>{{person.numero}}</td>
             <td>{{person.complemento}}</td>
-            <td>{{person.referencia}}</td>
-          
+            <td>{{person.referencia}}</td>        
          </tr>
       </table>
-  
  </mat-tab>
 </mat-tab-group>
