@@ -8,11 +8,15 @@ import { HttpService } from 'src/services/http.service';
 import { CepServiceService } from '../cep-service.service';
 
 export interface DialogDataClient{
+  logradouro: string;
+  clientes : Array<any>;
+  address: any[];
   id: number,
+  idEndereco: number,
   nome: string,
   CNPJ: string, 
   razaoSocial: string, 
-  clienteDesde: Date,
+  clienteDesde: string,
   rua: string,
   bairro:string,
   cidade:string,

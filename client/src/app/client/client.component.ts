@@ -52,7 +52,7 @@ export class ClientComponent implements OnInit {
 
   openDialog2(clientes: any, id: any, nome: any, CNPJ: any, razaoSocial: any, clienteDesde: any){
     const dialogRef = this.dialog.open(EditClientComponent, {
-      width: '500px',
+      width: '700px',
       data: {clientes: clientes, id : id, nome : nome, cnpj : CNPJ, razaoSocial : razaoSocial, clienteDesde : clienteDesde, address: this.address}
     });
    

@@ -1,17 +1,21 @@
 import { HttpClient } from '@angular/common/http';
+import { ThisReceiver } from '@angular/compiler';
 import { Component, Inject, inject, OnInit } from '@angular/core';
 import { AnyForUntypedForms } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { throws } from 'assert';
+import { AnyTxtRecord } from 'dns';
 import { HttpService } from 'src/services/http.service';
 import { threadId } from 'worker_threads';
 import { CepServiceService } from '../cep-service.service';
+import { EditAddressComponent } from '../edit-address/edit-address.component';
 export interface DialogDataClient{
   logradouro: string;
   clientes : Array<any>;
   address: any[];
   id: number,
+  idEndereco: number,
   nome: string,
   CNPJ: string, 
   razaoSocial: string, 
@@ -54,10 +58,26 @@ export class EditClientComponent implements OnInit {
   action: string = '';
   enderecos: Array<any> = [];
   selectedGroup: any;
+  idEndereco: any;
 
-  constructor(public dialogRef: MatDialogRef<EditClientComponent>, private httpService : HttpService, @Inject(MAT_DIALOG_DATA) public data: DialogDataClient, private _snackBar: MatSnackBar, private cepsService: CepServiceService) { }
+  constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<EditClientComponent>, private httpService : HttpService, @Inject(MAT_DIALOG_DATA) public data: DialogDataClient, private _snackBar: MatSnackBar, private cepsService: CepServiceService) { }
 
   ngOnInit(): void {
+    this.getAddress();
+  }
+
+  openDialog(id: any){
+    id = this.idEndereco;
+    const dialogRef = this.dialog.open(EditAddressComponent, {
+      width: '500px',
+      data: {id : this.idEndereco, logradouro : this.logradouro, bairro : this.bairro, cidade : this.cidade, uf : this.uf, cep: this.cep, numero: this.numero, complemento: this.complemento, referencia: this.referencia, fkClient: this.data.id, enderecos: this.enderecos}
+    });
+  
+
+    dialogRef.afterClosed().subscribe(() => {
+      console.log('The dialog was closed');
+      this.getAddress();
+    });
   }
 
   openSnackBar() {
@@ -88,7 +108,7 @@ export class EditClientComponent implements OnInit {
     this.nome = nome;
     this.cnpj = cnpj;
     this.razaoSocial = razaoSocial;
-    this.clientes =  await this.httpService.put('client/', {id: this.data.id, nome: this.data.nome, cnpj: this.data.CNPJ, razaoSocial: this.data.razaoSocial, address: this.enderecos});
+    this.clientes =  await this.httpService.put('client/', {id: this.data.id, nome: this.nome, cnpj: this.cnpj, razaoSocial: this.razaoSocial});
     this.message = 'Editado!'
     this.action = 'OK'
     this.openSnackBar();
@@ -97,17 +117,19 @@ export class EditClientComponent implements OnInit {
 
   async editAddress(){
     this.enderecos.push({logradouro :this.logradouro, bairro :this.bairro, localidade :this.cidade,
-       uf :this.uf, cep :this.cep, numero :this.numero, complemento :this.complemento, idEndereco : this.selectedGroup})
+       uf :this.uf, cep :this.cep, numero :this.numero, complemento :this.complemento})
   }
 
-  async addAddress(){
-    this.newAddress.push({"logradouro" : this.logradouro, "bairro" : this.bairro,
-      "cidade" : this.cidade, "uf" : this.uf, "cep": this.cep, "numero": this.numero, "complemento": this.complemento, "referencia" : this.referencia});
-    console.log(this.newAddress); 
-  }
+ // async addAddress(){
+ //   this.newAddress.push({"logradouro" : this.logradouro, "bairro" : this.bairro,
+ //     "cidade" : this.cidade, "uf" : this.uf, "cep": this.cep, "numero": this.numero, "complemento": this.complemento, "referencia" : this.referencia});
+ //   console.log(this.newAddress); 
+ // }
 
   async getAddress(){
     this.enderecos = await this.httpService.get(`client/${this.data.id}`);
+    console.log(this.enderecos)
+    
   }
 
   cancel(): void {
