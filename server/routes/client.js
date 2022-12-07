@@ -52,6 +52,7 @@ knl.post('client', async(req, resp) => {
         complemento:endereco.complemento,
         referencia: endereco.referencia,
         fkClient : client.id,
+        status: 1
     })
     await resultado.save();
 }
@@ -75,7 +76,8 @@ knl.get('client/:id', async(req, resp) => {
 
     const result = await knl.sequelize().models.address.findAll({
         where : {
-            fkClient : req.params.id
+            fkClient : req.params.id,
+            status: 1
         }
     });
     console.log(result);
@@ -117,6 +119,20 @@ knl.delete('client/:id', async(req, resp) => {
 knl.patch('client/:id', async(req, resp) => {
 
     const result = await knl.sequelize().models.client.update({
+        status : 0
+    },{
+        where : {
+            id: req.params.id,
+        },
+    });
+
+    resp.json(result)
+    resp.end();
+}, securityConsts.USER_TYPE_PUBLIC)
+
+knl.patch('address/:id', async(req, resp) => {
+
+    const result = await knl.sequelize().models.address.update({
         status : 0
     },{
         where : {

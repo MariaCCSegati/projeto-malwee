@@ -1,0 +1,61 @@
+<mat-tab-group id="modal">
+    <mat-tab label="Excluir">
+       <h4>Deseja excluir mesmo?</h4>
+       <div> 
+          <button mat-raised-button class="botao" class="botaozin" (click)="delete()"><mat-icon>delete</mat-icon></button>
+          <button mat-raised-button class="botao" (click)="cancel()">Sair</button>
+       </div>
+       
+          
+    </mat-tab>
+ 
+    <mat-tab label="Editar">
+ 
+        <mat-form-field class="example-full-width" appearance="fill" >
+            <mat-label>CEP</mat-label>
+            <input matInput placeholder="Ex. 00000-000" class="inputzin" [(ngModel)]="cep" (blur)="consultaCep()">
+           </mat-form-field>
+      
+          <mat-form-field class="example-full-width" appearance="fill" >
+           <mat-label>Logradouro</mat-label>
+           <input matInput placeholder="Ex. Irmão Leão Magno" class="inputzin" [(ngModel)]="logradouro">
+          </mat-form-field>
+      
+          <mat-form-field class="example-full-width" appearance="fill" >
+           <mat-label>Bairro</mat-label>
+           <input matInput placeholder="Ex. Amizade" class="inputzin" [(ngModel)]="bairro" >
+          </mat-form-field>
+      
+          <mat-form-field class="example-full-width" appearance="fill" >
+           <mat-label>Cidade</mat-label>
+           <input matInput placeholder="Ex. Jaraguá do Sul" class="inputzin" [(ngModel)]="cidade" >
+          </mat-form-field>
+      
+          <mat-form-field class="example-full-width" appearance="fill" >
+            <mat-label>UF</mat-label>
+            <input matInput placeholder="Ex. Jaraguá do Sul" class="inputzin" [(ngModel)]="uf">
+           </mat-form-field>
+      
+          <mat-form-field class="example-full-width" appearance="fill" >
+          <mat-label>Número</mat-label>
+           <input matInput placeholder="Ex. 140" class="inputzin" [(ngModel)]="numero">
+          </mat-form-field>
+      
+          <mat-form-field class="example-full-width" appearance="fill" >
+          <mat-label>Complemento</mat-label>
+           <input matInput placeholder="Ex. apt. 204" class="inputzin" [(ngModel)]="complemento">
+          </mat-form-field>
+          
+          <mat-form-field class="example-full-width" appearance="fill" >
+          <mat-label>Ponto de referência</mat-label>
+           <input matInput placeholder="Ex. Bar do Arlindo" class="inputzin" [(ngModel)]="referencia">
+          </mat-form-field> 
+
+         <div mat-dialog-actions> 
+          <button mat-raised-button class="botao" class="botaozin" ><mat-icon>edit</mat-icon></button>
+          <button mat-raised-button class="botao" (click)="cancel()">Sair</button>
+         </div>
+            
+    </mat-tab>
+ </mat-tab-group>
+ 

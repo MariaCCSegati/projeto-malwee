@@ -42,6 +42,10 @@ module.exports = (sequelize) => {
         },
         fkClient:{
             type:Sequelize.INTEGER,
+        },
+        status: {
+            type : Sequelize.INTEGER,
+            allowNull : false,
         }
         
     })
