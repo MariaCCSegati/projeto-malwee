@@ -1,0 +1,33 @@
+.example-full-width{
+    width: 100%;
+    font-size: medium;
+}
+#tabelinha{
+    margin-top: 30px;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    width: 80%;
+    margin: 30px auto;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  #tabelinha td, #tabelinha th {
+    background-color: rgba(255, 255, 255, 0.642);
+    padding: 8px;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.137);
+  }
+  #tabelinha tr:hover {background-color: rgb(51, 255, 0);}
+  
+  #tabelinha th {
+    border: 1px solid rgba(255, 255, 255, 0.411);
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: rgb(35, 119, 214);
+    color: white;
+  }
+  #config{
+    width: 20%;
+    align-items: center;
+  }

@@ -1,7 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { map, Observable, startWith } from 'rxjs';
 import { HttpService } from 'src/services/http.service';
+import { ModalPedidoComponent } from '../modal-pedido/modal-pedido.component';
 
 @Component({
   selector: 'app-pedido',
@@ -12,12 +15,13 @@ export class PedidoComponent implements OnInit {
 
   selectedEndereco: number | undefined;
   public enderecos : Array<any> = [];
-  
+  nome = '';
+  pedidos: Array<any> = [];
 
-  constructor(private httpService : HttpService) { }
+  constructor(private http : HttpClient, private httpService : HttpService, public dialog: MatDialog) { }
 
   myControl = new FormControl('');
-  options: string[] = ['One', 'Two', 'Three'];
+  options: string[] = [];
   filteredOptions: Observable<string[]> | undefined;
 
   ngOnInit() {
@@ -35,5 +39,17 @@ export class PedidoComponent implements OnInit {
 
   async getEndereco(){
     this.enderecos = await this.httpService.get('collection');
+  }
+
+  openDialog(){
+    const dialogRef = this.dialog.open(ModalPedidoComponent, {
+      width: '550px',
+    });
+   
+
+    dialogRef.afterClosed().subscribe(() => {
+      console.log('The dialog was closed');
+
+    });
   }
 }

@@ -1,0 +1,39 @@
+<mat-tab-group id="modal">
+    <mat-tab label="Inserir">
+
+        <h1>Informações</h1>
+  
+        <div id="dropdown">
+            <mat-label>Selecione um produto</mat-label>
+          
+            <app-dropdown [array]="produtos" [idField]="'id'" [textField]="'description'"  [(ngModel)]="selectedGroup"></app-dropdown><br>
+    
+          </div>
+         
+           <mat-form-field hintLabel="É preciso 14 caracteres!" appearance="fill">
+             <mat-label>Insira a quantidade</mat-label>
+             <input matInput placeholder="Ex. 2" class="inputzin" [(ngModel)]="qtd">
+           </mat-form-field>  
+
+           <mat-form-field hintLabel="É preciso 14 caracteres!" appearance="fill">
+            <mat-label>Insira o valor unitário</mat-label>
+            <input matInput placeholder="Ex. 14.90" class="inputzin" [(ngModel)]="valorUnidade">
+          </mat-form-field>  
+
+          <mat-form-field hintLabel="É preciso 14 caracteres!" appearance="fill">
+            <mat-label>Insira o acréscimo</mat-label>
+            <input matInput placeholder="Ex. 1.94" class="inputzin" [(ngModel)]="acrescimo">
+          </mat-form-field> 
+
+          <mat-form-field hintLabel="É preciso 14 caracteres!" appearance="fill">
+            <mat-label>Insira o decréscimo</mat-label>
+            <input matInput placeholder="Ex. 30.90" class="inputzin" [(ngModel)]="decrescimo">
+          </mat-form-field>
+
+          <div mat-dialog-actions>
+            <button mat-raised-button class="botao" id="botao1" (click)="insert()"><mat-icon>add_circle_outline</mat-icon></button>
+            <button mat-raised-button class="botao">Sair</button>
+          </div>
+
+     </mat-tab>
+</mat-tab-group>
