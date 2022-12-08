@@ -36,6 +36,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { PedidoComponent } from './pedido/pedido.component';
 import { EditAddressComponent } from './edit-address/edit-address.component';
+import { ModalPedidoComponent } from './modal-pedido/modal-pedido.component';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { EditAddressComponent } from './edit-address/edit-address.component';
     DropdownComponent,
     PedidoComponent,
     EditAddressComponent,
+    ModalPedidoComponent,
   ],
   imports: [
     RoutesModule,

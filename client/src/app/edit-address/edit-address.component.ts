@@ -1,9 +1,29 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpService } from 'src/services/http.service';
 import { CepServiceService } from '../cep-service.service';
 import { EditClientComponent } from '../edit-client/edit-client.component';
-import { DialogDataClient, ModalClientComponent } from '../modal-client/modal-client.component';
+
+export interface DialogDataClient{
+  logradouro: string;
+  clientes : Array<any>;
+  address: any[];
+  id: number,
+  idEndereco: number,
+  nome: string,
+  CNPJ: string, 
+  razaoSocial: string, 
+  clienteDesde: string,
+  rua: string,
+  bairro:string,
+  cidade:string,
+  estado:string,
+  cep:string,
+  numero:string,
+  complemento:string,
+  referencia:string
+}
 
 @Component({
   selector: 'app-edit-address',
@@ -27,9 +47,13 @@ export class EditAddressComponent implements OnInit {
   action: string = '';
   enderecos: Array<any> = [];
 
-  constructor(private httpService : HttpService, public dialogRef: MatDialogRef<EditClientComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogDataClient, private cepsService: CepServiceService) { }
+  constructor(private _snackBar: MatSnackBar, private httpService : HttpService, public dialogRef: MatDialogRef<EditClientComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogDataClient, private cepsService: CepServiceService) { }
 
   ngOnInit(): void {
+  }
+
+  openSnackBar() {
+    this._snackBar.open(this.message, this.action);
   }
 
   consultaCep(){
@@ -47,10 +71,22 @@ export class EditAddressComponent implements OnInit {
     this.dialogRef.close();
   }
   async delete(){
-    this.enderecos =  await this.httpService.patch(`address/${this.data.idEndereco}`, {});
+    console.log(this.data.id)
+    this.enderecos =  await this.httpService.patch(`address/${this.data.id}`, {});
     console.log(this.enderecos)
     this.message = 'Deletado!'
     this.action = 'OK'
+    this.openSnackBar();
+    this.dialogRef.close();
+  }
+
+  async edit(){
+    console.log(this.data.id)
+    console.log(this.logradouro)
+    this.clientes =  await this.httpService.put('address/', {id: this.data.id, logradouro: this.logradouro, bairro: this.bairro, cidade: this.cidade, uf: this.uf, cep: this.cep, numero: this.numero, complemento: this.complemento, referencia: this.referencia});
+    this.message = 'Editado!'
+    this.action = 'OK'
+    this.openSnackBar();
     this.dialogRef.close();
   }
 

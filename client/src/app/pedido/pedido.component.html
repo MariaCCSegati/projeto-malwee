@@ -1,6 +1,6 @@
 <mat-card>
     <mat-card-content>
-      <mat-form-field appearance="outline">
+      <!--<mat-form-field appearance="outline">
         <mat-label>N° Pedido</mat-label>
         <input matInput placeholder="Ex. 2">
       </mat-form-field>
@@ -18,11 +18,41 @@
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
+      </mat-form-field>-->
+        <mat-form-field class="example-full-width" appearance="fill"> 
+          <mat-label>Busque um cliente</mat-label>
+          <input matInput placeholder="Ex. Heloisa Poderosa Lindona"  [(ngModel)]="nome">
+          <button mat-icon-button matSuffix class="botao" (click)="openDialog()"><mat-icon>add_circle_outline</mat-icon></button>
+        </mat-form-field>
     </mat-card-content>
 </mat-card>
-<mat-card>
+<!--<mat-card>
   <mat-label>Selecione um endereço</mat-label>
   <app-dropdown [array]="enderecos" [idField]="'id'" [textField]="'logradouro'"  [(ngModel)]="selectedEndereco"></app-dropdown><br>
   
-</mat-card>
+</mat-card>-->
+
+<table id="tabelinha">
+  <tr>
+      <th> ID </th>
+      <th> Descrição </th>
+      <th> Quantidade </th>
+      <th> Valor Unitário </th>
+      <th> Descontos </th>
+      <th> Acrescimos </th>
+      <th> Total </th>
+  </tr>
+
+  <tr *ngFor="let person of pedidos" >
+      <td> {{person.id}} </td>
+      <td> {{person.description}} </td>
+      <td> {{person.qtd}} </td>
+      <td> {{person.valorUnidade}} </td>
+      <td> {{person.decrescimo}} </td>
+      <td> {{person.acrescimo}} </td>
+      <td> {{person.total}} </td>
+
+  </tr> 
+
+  
+</table>

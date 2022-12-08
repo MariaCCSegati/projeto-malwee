@@ -1,7 +1,7 @@
 const { Sequelize } = require("sequelize");
 
 module.exports = (sequelize) => {
-    sequelize.define('product', {
+    sequelize.define('pedidos', {
         id : {
             type : Sequelize.INTEGER.UNSIGNED,
             primaryKey : true,
