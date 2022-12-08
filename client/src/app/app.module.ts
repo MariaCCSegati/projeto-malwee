@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BlockUIModule } from 'ng-block-ui';
 import { AppRoutingModule } from './app-routing.module';
@@ -37,6 +37,7 @@ import { DropdownComponent } from './dropdown/dropdown.component';
 import { PedidoComponent } from './pedido/pedido.component';
 import { EditAddressComponent } from './edit-address/edit-address.component';
 import { ModalPedidoComponent } from './modal-pedido/modal-pedido.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -79,7 +80,9 @@ import { ModalPedidoComponent } from './modal-pedido/modal-pedido.component';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule
   ],
   exports : [
     RouterModule
