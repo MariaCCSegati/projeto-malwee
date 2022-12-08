@@ -103,6 +103,28 @@ knl.put('client', async(req, resp) => {
     resp.end();
 }, securityConsts.USER_TYPE_PUBLIC)
 
+knl.put('address', async(req, resp) => {
+    
+    const result = await knl.sequelize().models.address.update({
+        logradouro : req.body.logradouro,
+        bairro : req.body.bairro,
+        cidade : req.body.cidade,
+        uf: req.body.uf,
+        cep: req.body.cep,
+        numero: req.body.numero,
+        complemento: req.body.complemento,
+        referencia: req.body.referencia,
+    },{
+        where : {
+            id : req.body.id,
+        }
+    });
+
+    resp.send(result);
+    console.log(result);
+    resp.end();
+}, securityConsts.USER_TYPE_PUBLIC)
+
 knl.delete('client/:id', async(req, resp) => {
 
     const result = await knl.sequelize().models.client.destroy({

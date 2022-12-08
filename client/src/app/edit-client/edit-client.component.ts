@@ -67,10 +67,11 @@ export class EditClientComponent implements OnInit {
   }
 
   openDialog(id: any){
-    id = this.idEndereco;
+    this.idEndereco=id;
+    console.log(id);
     const dialogRef = this.dialog.open(EditAddressComponent, {
       width: '500px',
-      data: {id : this.idEndereco, logradouro : this.logradouro, bairro : this.bairro, cidade : this.cidade, uf : this.uf, cep: this.cep, numero: this.numero, complemento: this.complemento, referencia: this.referencia, fkClient: this.data.id, enderecos: this.enderecos}
+      data: {id : id, logradouro : this.logradouro, bairro : this.bairro, cidade : this.cidade, uf : this.uf, cep: this.cep, numero: this.numero, complemento: this.complemento, referencia: this.referencia, fkClient: this.data.id, enderecos: this.enderecos}
     });
   
 

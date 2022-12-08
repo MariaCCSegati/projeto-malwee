@@ -27,8 +27,8 @@ export class ModalPedidoComponent implements OnInit {
     this.produtos = await this.httpService.get('product');
   }
 
-  insert(){
-    
+  async insert(){
+    this.produtos =  await this.httpService.post('pedidos', {});
   }
 
 }
