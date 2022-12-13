@@ -22,8 +22,9 @@ export interface DialogDataClient{
   cep:string,
   numero:string,
   complemento:string,
-  referencia:string
+  referencia:string,
 }
+
 @Component({
   selector: 'app-pedido',
   templateUrl: './pedido.component.html',
@@ -36,28 +37,13 @@ export class PedidoComponent implements OnInit {
   public clientes : Array<any> = [];
   nome = '';
   pedidos: Array<any> = [];
+  selectedGroup: number | undefined;
+  id: number | undefined;
 
-  constructor(private http : HttpClient, private httpService : HttpService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data: DialogDataClient) { }
-
-  myControl = new FormControl('');
-  options: string[] = this.clientes;
-  filteredOptions: Observable<string[]> | undefined;
+  constructor(private http : HttpClient, private httpService : HttpService, public dialog: MatDialog) { }
 
   async ngOnInit() {
-    await this.filtro()
-  }
-
-  filtro(){
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value || '')),
-    );
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+      await this.getClientes();
   }
 
   async getEndereco(){
@@ -71,12 +57,18 @@ export class PedidoComponent implements OnInit {
   openDialog(){
     const dialogRef = this.dialog.open(ModalPedidoComponent, {
       width: '550px',
+      data: {id: this.id}
     });
    
 
     dialogRef.afterClosed().subscribe(() => {
       console.log('The dialog was closed');
-
+      this.list();
     });
   }
+
+  async list(){
+    //listar pedidos
+  }
+
 }
