@@ -1,12 +1,19 @@
 <mat-tab-group id="modal">
     <mat-tab label="Inserir">
+      
+      <div id="dropdown">
+        <mat-label>Selecione um endereço</mat-label>
+      
+        <app-dropdown [array]="enderecos" [idField]="'id'" [textField]="'cep'"  [(ngModel)]="selectedGroup3"></app-dropdown><br>
+
+      </div>
 
         <h1>Informações</h1>
   
         <div id="dropdown">
             <mat-label>Selecione um produto</mat-label>
           
-            <app-dropdown [array]="produtos" [idField]="'id'" [textField]="'description'"  [(ngModel)]="selectedGroup"></app-dropdown><br>
+            <app-dropdown [array]="produtos" [idField]="'id'" [textField]="'description'"  [(ngModel)]="selectedGroup2"></app-dropdown><br>
     
           </div>
          

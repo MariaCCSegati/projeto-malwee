@@ -1,6 +1,6 @@
 <mat-card>
     <mat-card-content>
-      <!--<mat-form-field appearance="outline">
+     <!-- <mat-form-field appearance="outline">
         <mat-label>N° Pedido</mat-label>
         <input matInput placeholder="Ex. 2">
       </mat-form-field>
@@ -20,24 +20,19 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>-->
 
-      <!--Buscar cliente-->
-
-
-      <!--<mat-form-field class="example-full-width" appearance="fill"> 
-          <mat-label>Busque um cliente</mat-label>
-          <input matInput placeholder="Ex. Heloisa Poderosa Lindona"  [(ngModel)]="nome">
-          <button mat-icon-button matSuffix class="botao" (click)="openDialog()"><mat-icon>add_circle_outline</mat-icon></button>
-        </mat-form-field>-->  
-
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Busque um cliente</mat-label>
-          <input type="text" placeholder="Hello" matInput [formControl]="myControl" [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-        {{option}}
-      </mat-option>
-    </mat-autocomplete>
+      <mat-form-field class="example-full-width" appearance="fill" >
+        <mat-label>Busque um pedido</mat-label>
+              <input matInput placeholder="Ex. aidna nao sei">
+              <button mat-icon-button matSuffix class="botao" (click)="openDialog()"><mat-icon>add_circle_outline</mat-icon></button>
+              <button mat-icon-button matSuffix class="botao" (click)="list()"><mat-icon>refresh</mat-icon></button>
         </mat-form-field>
+
+        <div id="dropdown">
+          <mat-label>Selecione um cliente</mat-label>
+        
+          <app-dropdown [array]="clientes" [idField]="'id'" [textField]="'nome'"  [(ngModel)]="selectedGroup"></app-dropdown><br>
+  
+        </div>
 
     </mat-card-content>
 </mat-card>

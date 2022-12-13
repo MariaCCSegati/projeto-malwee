@@ -11,10 +11,10 @@ knl.post('pedidos', async(req, resp) => {
         fkClient : Joi.number().min(1).required(),
         fkAddress : Joi.number().min(1).required(),
         total : Joi.string().min(1).max(100).required(),
-       // clienteDesde : Joi.date().required(),
+       //clienteDesde : Joi.date().required(),
         produto: Joi.array().items(Joi.object({
             fkPedidos : Joi.number().min(1).required(),
-            pkProdutos : Joi.number().min(1).required(),
+            fkProduct : Joi.number().min(1).required(),
             valorUnitario : Joi.number().min(1).required(),
             decrescimo : Joi.number().min(1).required(),
             acrescimo : Joi.number().min(1).required(),
@@ -23,7 +23,7 @@ knl.post('pedidos', async(req, resp) => {
 
     knl.validate(req.body, schema);
 
-    const result = await knl.sequelize().models.client.findAll({
+    const result = await knl.sequelize().models.pedidos.findAll({
         where : {
             nome : req.body.nome,
         }
@@ -31,7 +31,7 @@ knl.post('pedidos', async(req, resp) => {
 
     knl.createException('0006', '', !knl.objects.isEmptyArray(result));
 
-    const client = knl.sequelize().models.client.build({
+    const client = knl.sequelize().models.pedidos.build({
         nome : req.body.nome,
         CNPJ : req.body.CNPJ,
         razaoSocial : req.body.razaoSocial,
