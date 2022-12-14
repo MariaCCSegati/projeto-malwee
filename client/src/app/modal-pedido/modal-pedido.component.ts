@@ -114,9 +114,9 @@ export class ModalPedidoComponent implements OnInit {
     this.enderecos = await this.httpService.get(`client/${this.idCliente}`);
   }
 
-  //async insert(){
-  //  this.produtos =  await this.httpService.post('pedidos', {emissao: this.createdAt, entrega: this.entrega, fkClient: this.idCliente, fkAddress: this.idEndereco, total: this.total, pedido: this.newProduct});
-  //}
+  async insert(){
+    this.produtos =  await this.httpService.post('pedidos', {emissao: this.createdAt, entrega: this.entrega, fkClient: this.idCliente, fkAddress: this.idEndereco, total: this.total, pedido: this.newProduct});
+  }
 
   //async addProduto(){
   //  this.newProduct.push({"fkPedidos" : this.idPedido, "fkProduct" : this.idProduct,
