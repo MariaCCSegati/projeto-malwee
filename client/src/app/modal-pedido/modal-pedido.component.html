@@ -1,46 +1,95 @@
 <mat-tab-group id="modal">
-    <mat-tab label="Inserir">
+    <mat-tab label="Selecionar cliente">
+
+      <mat-label>Selecione um cliente</mat-label>
+
+      <mat-card-content style="width: 100%;">
+         <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Cliente</mat-label>
+          <input matInput placeholder="Digite o nome" type="text" [(ngModel)]="nome" maxlength="100" minlength="2">
+         </mat-form-field><br>
+         <table id="tabelinha" border="1">
+          <tr *ngFor="let client of clientes | filter : description">
+           <td (click)="add2(client.nome, client.id)">{{client.nome}}</td>
+          </tr> 
+         </table>
+      </mat-card-content>
+
+      <mat-label>Selecione um endereço</mat-label>   <br>
+      <app-dropdown [array]="enderecos" [idField]="'id'" [textField]="'cep'"  [(ngModel)]="selectedGroup"></app-dropdown><br>
+
+      <!--Data de emissão e entrega-->
+
+      <mat-form-field appearance="fill" class="example-form-field">
+        <mat-label>Data de entrega</mat-label>
+        <input matInput [matDatepicker]="datepicker" [(ngModel)]="entrega" [min]="entrega" required>
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle mat-icon-button matSuffix [for]="datepicker"></mat-datepicker-toggle>
+        <mat-datepicker #datepicker>
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>Cancelar</button>
+            <button mat-raised-button color="primary" matDatepickerApply>Confirmar</button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
+      </mat-form-field>
+
+    </mat-tab>
+
+    <mat-tab label="Selecionar produto">
+
+      <mat-label>Selecione um produto</mat-label><br>
+
+      <mat-card-content>
+         <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Produto</mat-label>
+          <input matInput placeholder="Digite o produto" type="text" [(ngModel)]="description" maxlength="100" minlength="2">
+         </mat-form-field><br>
+         <table *ngIf="description.length >=1">
+          <th id="desc">Descrição</th>
+         </table>
+         <table id="table">
+         <tr *ngFor="let product of produtos | filter : description">
+          <td (click)="add(product.description, product.id, product.price)">{{product.description}}</td>
+         </tr> 
+         </table>
+         <br>
+         <div *ngFor="let product of products" style="text-align: center;">
+         <div *ngIf="again == 1">
+         <mat-form-field class="example-30-width" appearance="outline">
+          <mat-label>Quantidade</mat-label>
+          <input matInput type="number" [(ngModel)]="qtd" min="1" max="100" required>
+         </mat-form-field><br>
+         <mat-form-field class="example-30-width" appearance="outline">
+          <mat-label>Preço unitário</mat-label>
+          <input matInput [(ngModel)]="valorU">
+         </mat-form-field><br>
+         <mat-form-field class="example-30-width" appearance="outline">
+          <mat-label>Desconto</mat-label>
+          <input matInput [(ngModel)]="desc" minlength="1" maxlength="4" required>
+         </mat-form-field><br>
+         <mat-form-field class="example-30-width" appearance="outline">
+          <mat-label>Acrescimo</mat-label>
+          <input matInput [(ngModel)]="acres" minlength="1" maxlength="4" required>
+         </mat-form-field><br>
+         <mat-form-field class="example-30-width" appearance="outline">
+          <mat-label>Total</mat-label>
+          <input matInput [(ngModel)]="total" minlength="4" maxlength="1000000000000" required>
+         </mat-form-field><br>
+         </div>
+         </div>
+        </mat-card-content>
+
+      </mat-tab>
+
+      <mat-tab label="Selecionar produto">
+        <p>Deseja realizar esse pedido?</p>
+
+        <div mat-dialog-actions>
+          <button mat-raised-button class="botao" class="botaozin" ><mat-icon>add_circle_outline</mat-icon></button>
+          <button mat-raised-button class="botao">Sair</button>
+        </div>
+
+      </mat-tab>
       
-      <div id="dropdown">
-        <mat-label>Selecione um endereço</mat-label>
-      
-        <app-dropdown [array]="enderecos" [idField]="'id'" [textField]="'cep'"  [(ngModel)]="selectedGroup3"></app-dropdown><br>
-
-      </div>
-
-        <h1>Informações</h1>
-  
-        <div id="dropdown">
-            <mat-label>Selecione um produto</mat-label>
-          
-            <app-dropdown [array]="produtos" [idField]="'id'" [textField]="'description'"  [(ngModel)]="selectedGroup2"></app-dropdown><br>
-    
-          </div>
-         
-           <mat-form-field hintLabel="É preciso 14 caracteres!" appearance="fill">
-             <mat-label>Insira a quantidade</mat-label>
-             <input matInput placeholder="Ex. 2" class="inputzin" [(ngModel)]="qtd">
-           </mat-form-field>  
-
-           <mat-form-field hintLabel="É preciso 14 caracteres!" appearance="fill">
-            <mat-label>Insira o valor unitário</mat-label>
-            <input matInput placeholder="Ex. 14.90" class="inputzin" [(ngModel)]="valorUnidade">
-          </mat-form-field>  
-
-          <mat-form-field hintLabel="É preciso 14 caracteres!" appearance="fill">
-            <mat-label>Insira o acréscimo</mat-label>
-            <input matInput placeholder="Ex. 1.94" class="inputzin" [(ngModel)]="acrescimo">
-          </mat-form-field> 
-
-          <mat-form-field hintLabel="É preciso 14 caracteres!" appearance="fill">
-            <mat-label>Insira o decréscimo</mat-label>
-            <input matInput placeholder="Ex. 30.90" class="inputzin" [(ngModel)]="decrescimo">
-          </mat-form-field>
-
-          <div mat-dialog-actions>
-            <button mat-raised-button class="botao" id="botao1" (click)="insert()"><mat-icon>add_circle_outline</mat-icon></button>
-            <button mat-raised-button class="botao">Sair</button>
-          </div>
-
-     </mat-tab>
+     
 </mat-tab-group>

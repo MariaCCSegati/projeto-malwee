@@ -25,32 +25,29 @@ knl.post('pedidos', async(req, resp) => {
 
     const result = await knl.sequelize().models.pedidos.findAll({
         where : {
-            nome : req.body.nome,
+            fkClient : req.body.fkClient,
         }
     });
 
     knl.createException('0006', '', !knl.objects.isEmptyArray(result));
 
     const client = knl.sequelize().models.pedidos.build({
-        nome : req.body.nome,
-        CNPJ : req.body.CNPJ,
-        razaoSocial : req.body.razaoSocial,
-        //clienteDesde : req.body.clienteDesde,
+        emissao : req.body.emissao,
+        entrega : req.body.entrega,
+        fkClient : req.body.fkClient,
+        fkAddress : req.body.fkAddress,
+        total: req.body.total,
         status   : 1
     });
-    await client.save();
+    await pedidos.save();
 
-    for (const endereco of req.body.address){
-    const resultado = knl.sequelize().models.address.build({
-        logradouro: endereco.logradouro,
-        bairro : endereco.bairro,
-        cidade : endereco.cidade,
-        uf : endereco.uf,
-        cep : endereco.cep,
-        numero: endereco.numero,
-        complemento:endereco.complemento,
-        referencia: endereco.referencia,
-        fkClient : client.id,
+    for (const produto of req.body.produtos){
+    const resultado = knl.sequelize().models.produto-pedido.build({
+        fkPedidos: produto.fkPedidos,
+        fkProduct : produto.fkProduct,
+        valorUnitario : produto.valorUnitario,
+        decrescimo : produto.decrescimo,
+        acrescimo : produto.acrescimo,
         status: 1
     })
     await resultado.save();

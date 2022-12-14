@@ -27,20 +27,8 @@
               <button mat-icon-button matSuffix class="botao" (click)="list()"><mat-icon>refresh</mat-icon></button>
         </mat-form-field>
 
-        <div id="dropdown">
-          <mat-label>Selecione um cliente</mat-label>
-        
-          <app-dropdown [array]="clientes" [idField]="'id'" [textField]="'nome'"  [(ngModel)]="selectedGroup"></app-dropdown><br>
-  
-        </div>
-
     </mat-card-content>
 </mat-card>
-<!--<mat-card>
-  <mat-label>Selecione um endereço</mat-label>
-  <app-dropdown [array]="enderecos" [idField]="'id'" [textField]="'logradouro'"  [(ngModel)]="selectedEndereco"></app-dropdown><br>
-  
-</mat-card>-->
 
 <table id="tabelinha">
   <tr>
