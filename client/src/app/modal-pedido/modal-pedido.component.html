@@ -15,8 +15,10 @@
          </table>
       </mat-card-content>
 
-      <mat-label>Selecione um endereço</mat-label>   <br>
-      <app-dropdown [array]="enderecos" [idField]="'id'" [textField]="'cep'"  [(ngModel)]="selectedGroup"></app-dropdown><br>
+      <div *ngIf="again == 1">
+      <mat-label>Selecione um endereço</mat-label>
+        <h1 *ngFor="let client of enderecos">{{client.cep}}</h1>
+      </div>
 
       <!--Data de emissão e entrega-->
 
@@ -54,12 +56,13 @@
          </table>
          <br>
          <div *ngFor="let product of products" style="text-align: center;">
+        </div>
          <div *ngIf="again == 1">
          <mat-form-field class="example-30-width" appearance="outline">
           <mat-label>Quantidade</mat-label>
           <input matInput type="number" [(ngModel)]="qtd" min="1" max="100" required>
          </mat-form-field><br>
-         <mat-form-field class="example-30-width" appearance="outline">
+         <mat-form-field class="example-30-width" appearance="outline" required>
           <mat-label>Preço unitário</mat-label>
           <input matInput [(ngModel)]="valorU">
          </mat-form-field><br>
@@ -70,12 +73,7 @@
          <mat-form-field class="example-30-width" appearance="outline">
           <mat-label>Acrescimo</mat-label>
           <input matInput [(ngModel)]="acres" minlength="1" maxlength="4" required>
-         </mat-form-field><br>
-         <mat-form-field class="example-30-width" appearance="outline">
-          <mat-label>Total</mat-label>
-          <input matInput [(ngModel)]="total" minlength="4" maxlength="1000000000000" required>
-         </mat-form-field><br>
-         </div>
+         </mat-form-field><br> 
          </div>
         </mat-card-content>
 
@@ -85,7 +83,7 @@
         <p>Deseja realizar esse pedido?</p>
 
         <div mat-dialog-actions>
-          <button mat-raised-button class="botao" class="botaozin" ><mat-icon>add_circle_outline</mat-icon></button>
+          <button mat-raised-button class="botao" class="botaozin" (click)="insert()"><mat-icon>add_circle_outline</mat-icon></button>
           <button mat-raised-button class="botao">Sair</button>
         </div>
 

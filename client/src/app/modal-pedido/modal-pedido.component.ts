@@ -32,8 +32,6 @@ export interface DialogDataPedido{
 
 export class ModalPedidoComponent implements OnInit {
 
-  
-
   qtd: number | undefined;
   valorUnidade: number | undefined;
   acrescimo: number| undefined;
@@ -64,6 +62,7 @@ export class ModalPedidoComponent implements OnInit {
   valorU: number = 0;
   product: string = '';
   requests: Array<any> = [];
+  pedidos: Array<any> = [];
   desc : number | undefined;
   acres : number | undefined;
   
@@ -114,9 +113,9 @@ export class ModalPedidoComponent implements OnInit {
     this.enderecos = await this.httpService.get(`client/${this.idCliente}`);
   }
 
-  //async insert(){
-  //  this.produtos =  await this.httpService.post('pedidos', {emissao: this.createdAt, entrega: this.entrega, fkClient: this.idCliente, fkAddress: this.idEndereco, total: this.total, pedido: this.newProduct});
-  //}
+  async insert(){
+    this.pedidos =  await this.httpService.post('pedidos', {entrega: this.entrega, fkClient: this.idCliente, fkAddress: this.idEndereco, total: this.total, pedido: this.newProduct});
+  }
 
   //async addProduto(){
   //  this.newProduct.push({"fkPedidos" : this.idPedido, "fkProduct" : this.idProduct,

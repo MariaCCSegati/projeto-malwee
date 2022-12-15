@@ -6,7 +6,7 @@ const knl = require('../knl');
 
 knl.post('pedidos', async(req, resp) => {
     const schema = Joi.object({
-        emissao : Joi.date().required(),
+        //emissao : Joi.date().required(),
         entrega : Joi.date().required(),
         fkClient : Joi.number().min(1).required(),
         fkAddress : Joi.number().min(1).required(),
